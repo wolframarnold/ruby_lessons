@@ -1,0 +1,3 @@
+Use these solutions as a guideline for learning. If you want to run
+the spec against these solutions, copy these files into the same directory
+as the spec, so that the require statements will find them.
