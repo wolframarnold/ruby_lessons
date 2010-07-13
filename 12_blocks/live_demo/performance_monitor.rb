@@ -1,8 +1,8 @@
 class PerformanceMonitor
   def measure
-    start_at = Time.now
+    started_at = Time.now
     yield
-    end_at = Time.now
-    end_at - start_at
+    ended_at = Time.now
+    ended_at - started_at
   end
 end

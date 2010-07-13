@@ -1,30 +1,33 @@
 require 'performance_monitor'
 
 describe PerformanceMonitor do
-
   before do
     @perfmon = PerformanceMonitor.new
   end
 
-  it 'return a value' do
-    ret = @perfmon.measure do
+  it 'should have a "measure" method' do
+    @perfmon.should respond_to(:measure)
+  end
+
+  it 'should return a value' do
+    res = @perfmon.measure do
     end
-    ret.should_not be_nil
+    res.should_not be_nil
   end
 
   it 'runs the block' do
-    was_called = false
+    was_run = false
     @perfmon.measure do
-      was_called = true
+      was_run = true
     end
-    was_called.should be_true
+    was_run.should be_true
   end
 
-  it 'returns the time spent in block' do
+  it 'returns the length of time spent in the block' do
     Time.should_receive(:now).twice.and_return(0,5)
     duration = @perfmon.measure do
       # sleep 5
     end
-    duration.should be_close(5,0.1)
+    duration.should == 5
   end
 end
